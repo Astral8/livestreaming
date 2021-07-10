@@ -1,8 +1,20 @@
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, url_for, session, redirect
 import cv2
+from authlib.integrations.flask_client import OAuth
 
 app = Flask(__name__)
+app.secret_key = '!secret'
+app.config.from_object('config')
 
+CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
+oauth = OAuth(app)
+oauth.register(
+    name='google',
+    server_metadata_url=CONF_URL,
+    client_kwargs={
+        'scope': 'openid email profile'
+    }
+)
 camera = cv2.VideoCapture(0)
 
 
@@ -24,12 +36,28 @@ def video_feed():
 
 @app.route("/")
 def login():
-    return render_template('login.html')
+    redirect_uri = url_for('auth', _external=True)
+    return oauth.google.authorize_redirect(redirect_uri)
 
 
 @app.route('/home/')
 def home():
-    return render_template('home.html')
+    user = session.get('user')
+    return render_template('home.html', user=user)
+
+
+@app.route('/auth')
+def auth():
+    token = oauth.google.authorize_access_token()
+    user = oauth.google.parse_id_token(token)
+    session['user'] = user
+    return redirect('/')
+
+
+@app.route('/logout')
+def logout():
+    session.pop('user', None)
+    return redirect('/')
 
 
 @app.route('/staticvideos/')

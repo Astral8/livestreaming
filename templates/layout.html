@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html>
+<head>
+        <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+</head>
   <body>
-    <header>
-      <div class="container">
-        <h1 class="logo">Akul's web app</h1>
-        <strong><nav>
-          <ul class="menu">
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('login') }}">Login</a></li>
-            <li><a href="{{ url_for('staticvideos') }}">Static Videos</a></li>
-            <li><a href="{{ url_for('livestreaming') }}">Livestream</a></li>
-          </ul>
-        </nav></strong>
+  <nav class="bg-gray-800">
+    <div class="flex items-center justify-between h-16">
+
+      <div class="flex-1 flex items-center justify-center sm:items-stretch">
+
+          <div class="flex space-x-4">
+            <a href="{{ url_for('home') }}" class="text-blue-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+
+            <a href="{{ url_for('login') }}" class="text-blue-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Account</a>
+
+            <a href="{{ url_for('staticvideos') }}" class="text-blue-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Static Video</a>
+
+            <a href="{{ url_for('livestreaming') }}" class="text-blue-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Live Stream</a>
+          </div>
+
       </div>
-    </header>
+
+    </div>
+
+
+</nav>
       <div class="container">
       {% block content %}
       {% endblock %}

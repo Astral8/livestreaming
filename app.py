@@ -51,7 +51,7 @@ def auth():
     token = oauth.google.authorize_access_token()
     user = oauth.google.parse_id_token(token)
     session['user'] = user
-    return redirect('/')
+    return redirect('/home/')
 
 
 @app.route('/logout')

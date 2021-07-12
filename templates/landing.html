@@ -7,15 +7,13 @@
     />
 </head>
 <body>
-{% extends "layout.html" %}
-{% block content %}
 <div class = "login">
 <h1>CNT Live Streaming App Login Page</h1>
 <p>Hi, this is the Login Page of my CNT4713 Project</p>
 <br>
 <p>login here</p>
-    </div>
+    <a href="{{ url_for('login') }}" class="text-blue-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</a>
+</div>
 
-{% endblock %}
 </body>
 </html>

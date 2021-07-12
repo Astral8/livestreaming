@@ -35,10 +35,14 @@ def video_feed():
 
 
 @app.route("/")
+def landing():
+    return render_template('landing.html')
+
+
+@app.route('/login/')
 def login():
     redirect_uri = url_for('auth', _external=True)
     return oauth.google.authorize_redirect(redirect_uri)
-
 
 @app.route('/home/')
 def home():

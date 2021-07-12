@@ -6,14 +6,28 @@
       rel="stylesheet"
     />
 </head>
-<body>
+
+<body class="bg-gray-800">
+
 <div class = "login">
-<h1>CNT Live Streaming App Login Page</h1>
-<p>Hi, this is the Login Page of my CNT4713 Project</p>
+
+    <div class="flex items-center justify-between h-16">
+      <div class="flex-1 flex items-center justify-center sm:items-stretch">
+
+        <h1 class="text-white">CNT Live Streaming App Login</h1>
+      </div>
+     </div>
 <br>
-<p>login here</p>
-    <a href="{{ url_for('login') }}" class="text-blue-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</a>
-</div>
+    <br>
+    <br>
+
+      <div class="flex items-center justify-between h-16">
+      <div class="flex-1 flex items-center justify-center sm:items-stretch">
+
+    <a href="{{ url_for('login') }}" class="text-blue-300 text-3xl hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-medium">Login</a>
+      </div>
+      </div>
+      </div>
 
 </body>
 </html>

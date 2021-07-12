@@ -7,13 +7,28 @@
     />
 </head>
 
-<body>
+<body class="bg-gray-400">
+  <!--            -->
+
 {% extends "layout.html" %}
-{% block content %}
-    <div class="home">
-        <h1>CNT Live Streaming App</h1>
-            <p>Hi, this is the home of my CNT4713 Project</p>
-    </div>
+  {% block content %}
+
+<br>
+</div>
+        <h1 class="text-center text-2xl">CNT Live Streaming App</h1>
+
+
+            <p class="text-center text-xl">Hi, this is the home of my CNT4713 Project</p>
+        <br>
+        <br>
+            <p class="text-center text-lg">Here are the features the site carries:</p>
+
+     <ul class="list-disc text-center">
+            <li>- A static video page which holds 2 videos including one showing how the livestream works</li>
+            <li>- A live stream page which holds the ability to actually livestream</li>
+            <li>- A logout function which takes you back to the login page</li>
+                </ul>
+
 
 {% endblock %}
 </body>

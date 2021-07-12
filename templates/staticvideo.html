@@ -6,16 +6,20 @@
       rel="stylesheet"
     />
 </head>
-<body>
+<body class="bg-gray-400">
 {% extends "layout.html" %}
 {% block content %}
-<div class="home">
-<h1>CNT Static Videos</h1>
-<p>Hi, this is where the static videos should be stashed</p>
-    <video width="600" height="240" controls>
-  <source src="/static/Video.MP4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+</div>
+<div class="content-center">
+<h1 class="text-center text-xl">CNT Static Videos</h1>
+<p class="text-center">Hi, this is where the static videos are stashed</p>
+    <br>
+<p class="text-center">Here is a 30 second clip as an example.</p>
+
+    <video style="display:block; margin: 0 auto;" width="600" height="240" controls>
+        <source src="/static/Video.MP4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 </div>
 {% endblock %}
 </body>

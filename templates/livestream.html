@@ -6,13 +6,15 @@
       rel="stylesheet"
     />
 </head>
-<body>
+<body class="bg-gray-400">
 {% extends "layout.html" %}
 {% block content %}
+</div>
+<br>
 <div class="home">
-<h1>CNT Livestreaming</h1>
-<p>Hi, this is where the livestreams occur</p>
-    <img src="http://PLACEHOLDER.ngrok.io/video_feed" width="100%">
+<h1 class="text-center text-xl">CNT Livestreaming</h1>
+<p class="text-center">Hi, this is where the livestreams occur</p>
+    <img src="http://PLACEHOLDER.ngrok.io/video_feed" width="100%" class="center" alt="Livestream is currently not live.">
 </div>
 {% endblock %}
 </body>

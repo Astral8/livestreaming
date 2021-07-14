@@ -1,9 +1,10 @@
 from flask import Flask, render_template, Response, url_for, session, redirect
 import cv2
+import os
 from authlib.integrations.flask_client import OAuth
 
 app = Flask(__name__)
-app.secret_key = '!secret'
+app.secret_key = os.getenv('SECRET_KEY')
 app.config.from_object('config')
 
 CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
@@ -36,7 +37,8 @@ def video_feed():
 
 @app.route("/")
 def landing():
-    return render_template('landing.html')
+    user = session.get('user')
+    return render_template('landing.html', user=user)
 
 
 @app.route('/login/')
@@ -44,10 +46,14 @@ def login():
     redirect_uri = url_for('auth', _external=True)
     return oauth.google.authorize_redirect(redirect_uri)
 
+
 @app.route('/home/')
 def home():
     user = session.get('user')
-    return render_template('home.html', user=user)
+    if not user:
+        return redirect('/')
+    else:
+        return render_template('home.html', user=user)
 
 
 @app.route('/auth')
@@ -66,12 +72,20 @@ def logout():
 
 @app.route('/staticvideos/')
 def staticvideos():
-    return render_template('staticvideo.html')
+    user = session.get('user')
+    if not user:
+        return redirect('/')
+    else:
+        return render_template('staticvideo.html', user=user)
 
 
 @app.route('/livestream')
 def livestreaming():
-    return render_template('livestream.html')
+    user = session.get('user')
+    if not user:
+        return redirect('/')
+    else:
+        return render_template('livestream.html', user=user)
 
 
 if __name__ == '__main__':

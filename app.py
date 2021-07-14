@@ -36,7 +36,8 @@ def video_feed():
 
 @app.route("/")
 def landing():
-    return render_template('landing.html')
+    user = session.get('user')
+    return render_template('landing.html', user=user)
 
 
 @app.route('/login/')
@@ -44,10 +45,14 @@ def login():
     redirect_uri = url_for('auth', _external=True)
     return oauth.google.authorize_redirect(redirect_uri)
 
+
 @app.route('/home/')
 def home():
     user = session.get('user')
-    return render_template('home.html', user=user)
+    if not user:
+        return redirect('/')
+    else:
+        return render_template('home.html', user=user)
 
 
 @app.route('/auth')
@@ -55,6 +60,8 @@ def auth():
     token = oauth.google.authorize_access_token()
     user = oauth.google.parse_id_token(token)
     session['user'] = user
+    print(user)
+    print(session)
     return redirect('/home/')
 
 
@@ -66,12 +73,20 @@ def logout():
 
 @app.route('/staticvideos/')
 def staticvideos():
-    return render_template('staticvideo.html')
+    user = session.get('user')
+    if not user:
+        return redirect('/')
+    else:
+        return render_template('staticvideo.html', user=user)
 
 
 @app.route('/livestream')
 def livestreaming():
-    return render_template('livestream.html')
+    user = session.get('user')
+    if not user:
+        return redirect('/')
+    else:
+        return render_template('livestream.html', user=user)
 
 
 if __name__ == '__main__':

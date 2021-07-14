@@ -1,9 +1,10 @@
 from flask import Flask, render_template, Response, url_for, session, redirect
 import cv2
+import os
 from authlib.integrations.flask_client import OAuth
 
 app = Flask(__name__)
-app.secret_key = '!secret'
+app.secret_key = os.getenv('SECRET_KEY')
 app.config.from_object('config')
 
 CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'

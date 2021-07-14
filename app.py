@@ -61,8 +61,6 @@ def auth():
     token = oauth.google.authorize_access_token()
     user = oauth.google.parse_id_token(token)
     session['user'] = user
-    print(user)
-    print(session)
     return redirect('/home/')
 
 
